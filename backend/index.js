@@ -1,22 +1,26 @@
-import express from "express"
-const app = express()
-import dotenv from "dotenv"
+import express from "express";
+import userRoutes from "./Routes/userRoutes.js"
+import cors from "cors"
+import dotenv from "dotenv";
+import connectDB from "./models/db.js";
+const app = express();
 dotenv.config();
+connectDB();
+app.use(cors({ origin: "http://localhost:3000" }));
 
-const PORT = process.env.PORT || 5001
+app.use(express.json());
 
-
-
-
-app.get("/data" ,(req,res)=>{
-    res.send("hey pong")
-})
-
-app.listen(PORT,()=>{
+app.use("/api/user/",userRoutes)
 
 
 
 
-    console.log(`running on port ${PORT}`)
+app.use(express.json());
+const PORT = process.env.PORT || 5002;
 
-})
+
+
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
