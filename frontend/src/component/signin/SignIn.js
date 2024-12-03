@@ -1,6 +1,7 @@
 import React ,{useState}from "react";
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
+import {Link} from "react-router-dom"
 import "./signin.css"
 
 const SignIn = () => {
@@ -51,7 +52,7 @@ const handleSubmit = async(e)=>{
   return (
     <div className="main-container">
       <div className="left-div">
-        <img src="Fetch Dreams.png"/>
+        <img src="Fetch Dreams.png" />
       </div>
       <div className="right-div">
         <form onSubmit={handleSubmit} className="form-div">
@@ -71,11 +72,15 @@ const handleSubmit = async(e)=>{
             name="password"
             value={formData.password}
             onChange={handleChange}
+            minLength="8"
             required
           />
           <button type="submit">Login In</button>
         </form>
-        {error && <p style={{ color: "red" }}>{error}</p>}{" "}
+        {error && <p style={{ color: "red" }}>{error}</p>}
+        <h3>
+          Not a user ? <Link to="/signup">Register</Link>
+        </h3>
       </div>
     </div>
   );

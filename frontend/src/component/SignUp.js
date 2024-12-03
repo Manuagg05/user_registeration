@@ -1,9 +1,12 @@
 import React,{useState} from "react";
 import {Link} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import axios from "axios"
 import "./signup.css" 
 
 const SignUp = () => {
+
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     userName: "",
     email: "",
@@ -42,6 +45,10 @@ const SignUp = () => {
 
       setSuccess(response.data.message);
       setError(null);
+
+      navigate("/userProfile")
+
+
     } catch (err) {
       setError(err.response?.data?.message || "Something went wrong");
       setSuccess(null);
@@ -52,7 +59,6 @@ const SignUp = () => {
     <div className="main-container">
       <div className="container-1">
         <img src="/Fetch Dreams.png" />
-
       </div>
       <div className="container-2">
         <form onSubmit={handleSubmit} className="form-div">
@@ -80,6 +86,7 @@ const SignUp = () => {
             name="choosePassword"
             value={formData.choosePassword}
             onChange={handleChange}
+            minLength="8"
             required
           />
           <input
@@ -88,12 +95,16 @@ const SignUp = () => {
             name="password"
             value={formData.password}
             onChange={handleChange}
+            minLength="8"
             required
           />
           <button type="submit">Register Yourself</button>
         </form>
-        {error && <p style={{ color: "red" }}>{error}</p>}{" "}
-        {success && <p style={{ color: "green" }}>{success}</p>}{" "}
+        {error && (
+          <p className="error-para" style={{ color: "red" }}>
+            {error}
+          </p>
+        )}{" "}
         <h3>
           Already a user <Link to="/signin">Login in</Link>{" "}
         </h3>
