@@ -1,5 +1,7 @@
 import React,{useState} from "react";
+import {Link} from "react-router-dom"
 import axios from "axios"
+import "./signup.css" 
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -47,14 +49,18 @@ const SignUp = () => {
   };
 
   return (
-    <>
-      <div></div>
-      <div>
-        <form onSubmit={handleSubmit}>
-          <label>Username</label>
+    <div className="main-container">
+      <div className="container-1">
+        <img src="/Fetch Dreams.png" />
+
+      </div>
+      <div className="container-2">
+        <form onSubmit={handleSubmit} className="form-div">
+          <h1>Register</h1>
+
           <input
             type="text"
-            placeholder="Enter Name"
+            placeholder="Enter Your Name"
             name="userName"
             value={formData.userName}
             onChange={handleChange}
@@ -62,7 +68,7 @@ const SignUp = () => {
           />
           <input
             type="email"
-            placeholder="Email"
+            placeholder="Enter Email"
             name="email"
             value={formData.email}
             onChange={handleChange}
@@ -70,7 +76,7 @@ const SignUp = () => {
           />
           <input
             type="password"
-            placeholder="Choose Password"
+            placeholder="Choose A Strong Password"
             name="choosePassword"
             value={formData.choosePassword}
             onChange={handleChange}
@@ -87,11 +93,12 @@ const SignUp = () => {
           <button type="submit">Register Yourself</button>
         </form>
         {error && <p style={{ color: "red" }}>{error}</p>}{" "}
-       
         {success && <p style={{ color: "green" }}>{success}</p>}{" "}
-      
+        <h3>
+          Already a user <Link to="/signin">Login in</Link>{" "}
+        </h3>
       </div>
-    </>
+    </div>
   );
 };
 

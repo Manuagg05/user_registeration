@@ -1,6 +1,7 @@
 import {createBrowserRouter,RouterProvider} from "react-router-dom"
 import SignUp from "./component/SignUp"
-import SignIn from "./component/SignIn";
+import SignIn from "./component/signin/SignIn";
+import UserProfile from "./component/UserProfile"
 import { Children } from "react";
 import Body from "./Body";
 
@@ -21,6 +22,10 @@ const appRouter = createBrowserRouter([
     path: "/signin",
     element: <SignIn/>,
   },
+  {
+    path:"/userProfile",
+    element:<UserProfile/>
+  }
 ],
 },
   
