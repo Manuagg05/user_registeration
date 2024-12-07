@@ -1,6 +1,7 @@
 import React,{useState} from "react";
 import {Link} from "react-router-dom"
 import { useNavigate } from "react-router-dom";
+import Validate from "../../utils/Validate"
 import axios from "axios"
 import "./signup.css" 
 
@@ -27,6 +28,12 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault(); 
+
+    const validateMessage = Validate(formData.email,formData.password)
+    if (validateMessage)
+    {setError(validateMessage)
+    return
+    }
     
     if (formData.choosePassword !== formData.password) {
       setError("Passwords do not match!");
